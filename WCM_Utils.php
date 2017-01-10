@@ -13,4 +13,11 @@ class WCM_Utils
     {
         return get_theme_mod(sanitize_title($name)."__settings");
     }
+
+    public function get_site_logo()
+    {
+        $custom_logo_id = get_theme_mod( 'custom_logo' );
+        $image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+        return $image[0];
+    }
 }
