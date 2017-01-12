@@ -13,7 +13,7 @@ class WCM_Image_Control extends WCM_Control
     {
         $wp_customize->add_setting($this->id . '__settings', array(
             'default' => '',
-            'transport' => 'refresh',
+            'transport' => 'postMessage',
         ));
 
         $wp_customize->add_control(new \WP_Customize_Image_Control($wp_customize,

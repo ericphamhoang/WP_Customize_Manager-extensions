@@ -34,12 +34,54 @@ class WCM_Control
      */
     var $default;
 
-    public function __construct($title, $section, $description = '', $default = null)
+    /**
+     * Example: .abc
+     * @var string $selector
+     */
+    var $selector;
+
+    /**
+     * @var array $control_options
+     */
+    var $control_options;
+
+    /**
+     * WCM_Control constructor.
+     * @param string $title
+     * @param string $section
+     * @param string $description
+     * @param string|null $default
+     * @param string $selector
+     */
+    public function __construct(string $title,string $section, string $description = '', string $default = null, string $selector = '')
     {
         $this->section = $section;
         $this->title = $title;
         $this->id = sanitize_title($title);
         $this->description = $description;
         $this->default = $default;
+        $this->selector = $selector;
+    }
+
+    public function add_default_setting(\WP_Customize_Manager $wp_customize)
+    {
+        $setting_options = array(
+            'default' => '',
+            'transport' => 'refresh',
+        );
+
+        if ($this->selector != '')
+        {
+            $setting_options['transport'] = 'postMessage';
+        }
+
+        $wp_customize->add_setting($this->id . '__settings', $setting_options);
+
+        if ($this->selector != '')
+        {
+            $wp_customize->selective_refresh->add_partial( $this->id . '__settings', array(
+                'selector' => $this->selector
+            ) );
+        }
     }
 }

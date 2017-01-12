@@ -9,26 +9,30 @@ namespace Owlies;
  */
 class WCM_Text_Control extends WCM_Control
 {
-
-    public function __construct($title, $section)
+    /**
+     * WCM_Text_Control constructor.
+     * @param string $title
+     * @param string $section
+     * @param string $description
+     * @param string|null $default
+     * @param string $selector
+     */
+    public function __construct(string $title, string $section, string $description = '', string $default = null, string $selector = '')
     {
-        parent::__construct($title, $section);
+        parent::__construct($title, $section, $description, $default, $selector);
+        $this->control_options = array(
+            'label' => $this->title,
+            'section' => $this->section,
+            'settings' => $this->id . '__settings',
+            'type' => 'text'
+        );
     }
 
     public function render(\WP_Customize_Manager $wp_customize)
     {
-        $wp_customize->add_setting($this->id . '__settings', array(
-            'default' => '',
-            'transport' => 'refresh',
-        ));
+        $this->add_default_setting($wp_customize);
 
         $wp_customize->add_control(new \WP_Customize_Control($wp_customize,
-            $this->id,
-            array(
-                'label' => $this->title,
-                'section' => $this->section,
-                'settings' => $this->id . '__settings',
-                'type' => 'text'
-            )));
+            $this->id, $this->control_options));
     }
 }
