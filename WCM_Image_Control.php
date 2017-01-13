@@ -11,10 +11,7 @@ class WCM_Image_Control extends WCM_Control
 {
     public function render(\WP_Customize_Manager $wp_customize)
     {
-        $wp_customize->add_setting($this->id . '__settings', array(
-            'default' => '',
-            'transport' => 'postMessage',
-        ));
+        $this->add_default_setting($wp_customize);
 
         $wp_customize->add_control(new \WP_Customize_Image_Control($wp_customize,
             $this->id,
