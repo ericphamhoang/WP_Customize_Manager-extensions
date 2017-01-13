@@ -33,3 +33,6 @@ in your theme template, add:
 		echo $wcm->get_theme_setting('Phone');
 		?>
 		</p>
+		
+Result: https://ericphamhoang.github.io/wcm/demo.PNG
+
