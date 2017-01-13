@@ -12,22 +12,24 @@ Usage:
   
  Example to add a new text field
 
-		add_action('customize_register', function(){
+	require_once __DIR__.'/WP_Customize_Manager-extensions/autoload.php';
 
-					 $extra_section = new WCM_Section('Extra Information');
+	add_action('customize_register', function($wp_customize){
 
-					$copyright_section->add_control(new WCM_Text_Control('Phone', $extra_section->id, '', '0420735367',  ".extra-phone" ));
+	$extra_section = new \Owlies\WCM_Section('Extra Information');
 
-					$copyright_section->render($wp_customize);
+	$extra_section->add_control(new \Owlies\WCM_Text_Control('Phone', $extra_section->id, '', '0420735367',  ".extra-phone" ));
 
-		})
+	$extra_section->render($wp_customize);
+
+	});
  
 in your theme template, add: 
 
-		 <p class="extra-phone">
-		 <?php 
-		 $wcm = new new WCM_Utils();
+	<p class="extra-phone" style="color:white">
+	<?php
+	$wcm = new \Owlies\WCM_Utils();
 
-		 echo $wcm->get_theme_setting('Phone');
-		 ?>
-		 </p>
+	echo $wcm->get_theme_setting('Phone');
+	?>
+	</p>
