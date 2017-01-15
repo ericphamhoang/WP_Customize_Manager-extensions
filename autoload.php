@@ -10,3 +10,4 @@ include_once __DIR__.'/WCM_Number_Control.php';
 include_once __DIR__.'/WCM_Utils.php';
 
 add_theme_support('customize-selective-refresh-widgets');
+
