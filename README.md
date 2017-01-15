@@ -2,6 +2,8 @@
 
 This package helps to quickly add WP_Customize Controls to your theme
 
+![alt](https://ericphamhoang.github.io/wcm/demo.PNG)
+
 Notice: Advanced Custom Fields is more recommended to add custom fields for specific pages
 
 What WP_Customize supports:
